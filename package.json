@@ -1,7 +1,6 @@
 {
   "name": "email-auto-responder-agent",
   "version": "1.0.0",
-  "type": "module",
   "devDependencies": {
     "@types/node": "^20.11.0"
   }
