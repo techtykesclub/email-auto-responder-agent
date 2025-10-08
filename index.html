@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Email Auto Responder Agent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>body{font-family:system-ui,Arial;margin:2rem;line-height:1.5}</style>
+  </head>
+  <body>
+    <h1>Tech Tykes — Email Auto-Responder Agent</h1>
+    <p>Backend is live. Test the API:</p>
+    <pre>POST /api/answer
+Authorization: Bearer tt-agent-test-12345
+Content-Type: application/json
+
+{"subject":"Refund question","body":"Can I cancel a week before class?"}</pre>
+    <p><a href="/api/answer">Health check</a> (GET)</p>
+  </body>
+</html>

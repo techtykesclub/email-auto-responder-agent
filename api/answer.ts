@@ -9,21 +9,21 @@ type AgentResponse = {
   needs_human: boolean;
 };
 
+// add at the top stays the same…
 export default async function handler(req: any, res: any) {
-  try {
-    // Health check (visit in browser)
-    if (req.method === "GET") {
-      return res.status(200).json({
-        ok: true,
-        name: "email-auto-responder-agent",
-        endpoint: "/api/answer",
-        usage: "POST { subject, body, site? } with Authorization: Bearer <AGENT_API_KEY>"
-      });
-    }
+  // 👍 add this GET block so visiting the URL in a browser works
+  if (req.method === "GET") {
+    return res.status(200).json({
+      ok: true,
+      name: "email-auto-responder-agent",
+      endpoint: "/api/answer",
+      usage: "POST { subject, body, site? } with Authorization: Bearer <AGENT_API_KEY>"
+    });
+  }
 
-    if (req.method !== "POST") {
-      return res.status(405).json({ error: "Method Not Allowed" });
-    }
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
 
     const apiKey = process.env.AGENT_API_KEY || "CHANGE_ME";
     const auth = (req.headers?.authorization as string) || "";
