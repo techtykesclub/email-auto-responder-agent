@@ -25,6 +25,8 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
+  try{
+
     const apiKey = process.env.AGENT_API_KEY || "CHANGE_ME";
     const auth = (req.headers?.authorization as string) || "";
     if (auth !== `Bearer ${apiKey}`) {
