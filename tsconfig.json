@@ -2,12 +2,13 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "node",        // <- use "node" (safe on Vercel)
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
+    "types": ["node"],                  // <- lets TS know about `process`
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
   },
   "include": ["api/**/*.ts", "data/**/*.ts"]
 }
