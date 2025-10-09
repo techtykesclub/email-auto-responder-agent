@@ -1,6 +1,27 @@
 // api/answer.ts
 import FAQS, { FaqEntry } from "../data/faqs";
+import { readFileSync } from "node:fs";
 
+let CORPUS: { title: string; url: string; text: string }[] = [];
+try {
+  const raw = readFileSync("./data/corpus.json", "utf8");
+  CORPUS = JSON.parse(raw);
+} catch {
+  // corpus.json may not exist yet on first deploy — safe to ignore
+  CORPUS = [];
+}
+
+// When building the candidate set:
+type Entry = { title: string; url: string; text: string };
+const ALL: Entry[] = [
+  // from your faqs.ts (structured snippets)
+  ...FAQS.map(f => ({ title: f.title, url: f.url, text: f.text })),
+  // from crawled pages (longer snippets)
+  ...CORPUS
+];
+
+// then in your retrieval code, use ALL instead of just FAQS:
+const best = pickBest(qTokens, ALL);
 type Citation = { title: string; url: string };
 type AgentResponse = {
   reply: string;
