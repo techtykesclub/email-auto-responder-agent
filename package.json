@@ -2,6 +2,11 @@
   "name": "email-auto-responder-agent",
   "version": "1.0.0",
   "devDependencies": {
-    "@types/node": "^20.11.0"
+    "@types/node": "^20.11.0",
+    "node-html-parser": "^6.1.11",
+    "tsx": "^4.16.2"
+  },
+  "scripts": {
+    "crawl": "tsx scripts/crawl.ts"
   }
 }
