@@ -20,8 +20,7 @@ const ALL: Entry[] = [
   ...CORPUS
 ];
 
-// then in your retrieval code, use ALL instead of just FAQS:
-const best = pickBest(qTokens, ALL);
+
 type Citation = { title: string; url: string };
 type AgentResponse = {
   reply: string;
@@ -83,7 +82,7 @@ export default async function handler(req: any, res: any) {
 
     // Retrieval logic
     const qTokens = tokenize(text);
-    const best = pickBest(qTokens, FAQS);
+    const best = pickBest(qTokens, ALL);
 
     const confidence =
       best && best.overlap >= 3
